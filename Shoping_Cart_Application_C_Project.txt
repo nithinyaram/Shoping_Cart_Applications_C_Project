@@ -1,0 +1,205 @@
+   #include<stdio.h>
+   #include<conio.h>
+    #include<stdlib.h>
+   struct product
+   {
+   int id;
+   char name[50];
+   int price,bill;
+   } ;
+   struct bill
+   {
+   int bid;
+   char bname[50];
+   int bunits, bprice;
+   }  ;
+    static int l;
+
+    int enter(struct product p[])
+    {
+       int k,c,a;
+       static int r=0;
+
+	printf("enter the no of products you enter:");
+	scanf("%d",&a);
+	r++;
+    if(r==1)
+      for(k=0;k<a;k++)
+       {
+       printf("enter the id no:");
+       scanf("%d",&p[k].id);
+       printf("enter the name of the product :");
+       scanf(" %s",p[k].name);
+       printf("enter the price of the product:");
+	 scanf("%d",&p[k].price);
+    l++;
+	  }
+     else
+      for(k=0;k<a;k++)
+      {
+	 printf("enter the id no:");
+       scanf("%d",&p[k+l].id);
+       printf("enter the name of the product :");
+       scanf("%s",p[k+l].name);
+       printf("enter the price of the product:");
+	 scanf("%d",&p[k+l].price);
+	 l++;
+      }
+     return l;
+    }
+      void display( struct product w[],int l)
+      {
+	int i;
+
+	printf(" NO .of Avilable products are  :%d\n",l);
+	  printf("\n\n\nAvilable products to products are\n");
+	  printf("\t id no\t\tname\t\t price");
+	 for (i=0;i<l;i++)
+
+	printf("\n\t%d\t\t%s\t\t%d\n",w[i].id,w[i].name,w[i].price);
+
+    }
+
+   int main()
+   {
+   int k,i,h=0,bill,opt,c,y,cho,pur[10]={0,0,0,0,0,0,0,0,0,0},id,o,j=0,dd,pid;
+   int n,m,w,a=0,u,g;
+   struct product z[50];
+    struct bill b[50];
+   h++;
+   if(h==1)
+
+   g= enter(z);
+/*
+   printf("\n\n bill structure is.........");
+   printf("\n\nenter the no of prducts:\n");
+    scanf("%d",&m);
+     for(i=0;i<m;i++)
+     {
+    printf("enter the id.no:\t");
+    scanf("%d",&b[i].bid[i]);
+       printf("enter the name of the product :\t");
+   scanf(" %s",b[i].bname);
+   printf("enter the price of the product:\t");
+   scanf("%d",&b[i].bprice[i]);
+   }
+   */
+
+
+
+   A:
+   printf("\n1.product management \n  2.product purchase \n 3.billing information\n 4.exit\n\n ");
+   printf("\n\nenter your option  :");
+   scanf("%d",&opt);
+   switch(opt)
+   {
+       C :
+   case 1:
+      printf("\n\n**4.add new product \n\t5.Display all product\n\t 6.back \n\n** ");
+      printf("enter your option :\n");
+
+
+      scanf("%d",&cho);
+   switch(cho)
+      {
+	 case 4:
+	g=enter(z);
+	goto C;
+	       //	break;
+
+	  case 5:
+
+	  display(z,g);
+	   goto C;
+	   // break ;
+
+	case 6:
+	 goto A;
+	//break;
+
+	 default :
+	printf("wrong entry :");
+	printf("do u want to continue: [1] 1.yes");
+	 scanf(" %d",&o);
+	 if(o==1)
+	 {
+	 goto A;
+	  }
+	 else
+	  {
+	  exit (0);
+
+	}
+	}
+   break;
+
+   case 2:
+   {
+
+	display(z,g);
+
+       B:
+	{
+	printf("enter id no of product to purchase :");
+	scanf("%d",&pid);
+	pur[pid-1]=1;
+	j++;
+	a++;
+	}
+	printf("do u want to continue [1/0]  1.yes 0.no :");
+	scanf("%d",&u);
+
+	if(u==1)
+	{
+	  goto B;
+	}
+	else
+
+	goto A;
+     //break ;
+
+     case 3:
+
+    printf("%d",a);
+	  if(a>0)
+	  {
+	 printf(" your purchased products are :\n\n\n");
+	 printf("\t\tid no\t\t\t name\t\t\t  price:");
+	  for (i=0;i<j;i++)
+	  {
+	      if(pur[i]==1)
+	printf("\n\t\t%d\t\t%s\t\t%3d\n\n",i+1,z[i].name,z[i].price);
+	}
+	  goto A;
+
+	}
+
+
+      else
+    {
+     printf("\n\n<<<<<<<<<<SORRY!!!.......You do not purchase any item>>>>>>>>>\n\n");
+     goto A;
+      }
+
+    //break;
+
+
+      case 4:
+	  printf("\n\n<<<<<<<<<<Thank you>>>>>>>>>> \n\n");
+	  exit(0);
+	 break;
+
+
+      default :
+
+	   printf("\n\n<<<<<<<<your option is wrong>>>>>>>>\n\n");
+	    goto A;
+
+
+   }
+
+
+}getch();
+}
+
+
